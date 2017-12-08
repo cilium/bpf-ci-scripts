@@ -24,21 +24,20 @@ make -j `getconf _NPROCESSORS_ONLN` LOCALVERSION=-custom
 rm -Rf /lib/modules/*
 rm /boot/*
 
-make modules_install
-make install
-make headers_install INSTALL_HDR_PATH=/usr/
+sudo make modules_install
+sudo make install
+sudo make headers_install INSTALL_HDR_PATH=/usr/
 
 # Temporary hack for Ubuntu
-cp /usr/include/asm/unistd* /usr/include/x86_64-linux-gnu/asm/
+sudo cp /usr/include/asm/unistd* /usr/include/x86_64-linux-gnu/asm/
 echo 9p >> /etc/modules
 echo 9pnet_virtio >> /etc/modules
 echo 9pnet >> /etc/modules
 
 # iproute2 installation
-apt-get -y install pkg-config bison flex
 cd $HOME
 git clone -b net-next git://git.kernel.org/pub/scm/linux/kernel/git/shemminger/iproute2.git
 cd iproute2/
 ./configure
 make -j `getconf _NPROCESSORS_ONLN`
-make install
+sudo make install
