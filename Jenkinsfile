@@ -10,9 +10,12 @@ pipeline {
             steps {
               echo 'Preparing VM'
               sh 'git clone https://github.com/scanf/bpf-ci-scripts workspace || true'
+              sh 'git -C workspace checkout . || true'
               sh 'git -C workspace pull origin master || true'
-              sh 'mv workspace/Vagrantfile Vagrantfile'
+              sh 'cp workspace/Vagrantfile Vagrantfile'
               sh 'vagrant up' 
+              sh 'vagrant ssh -c "pwd"'
+              sh 'vagrant ssh -c "ls"'
               echo 'Compile kernel'
               sh 'vagrant ssh -c "workspace/scripts/1_compile_kernel.sh"'
               echo 'Boot kernel'
