@@ -2,9 +2,7 @@
 
 set -x
 
-# Assume the kernel is two levels above us
-
-cd ../../
+cd $HOME/workspace
 
 cp /boot/config-`uname -r` .config
 yes '' | make oldconfig
