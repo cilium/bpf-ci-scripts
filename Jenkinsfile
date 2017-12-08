@@ -9,7 +9,8 @@ pipeline {
         stage ('Tests') {
             steps {
               echo 'Preparing VM'
-              sh 'git clone https://github.com/scanf/bpf-ci-scripts workspace'
+              sh 'git clone https://github.com/scanf/bpf-ci-scripts workspace || true'
+              sh 'git -C workspace pull origin master || true'
               sh 'mv workspace/Vagrantfile Vagrantfile'
               sh 'vagrant up' 
               echo 'Compile kernel'
