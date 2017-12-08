@@ -8,7 +8,9 @@ pipeline {
     stages {
         stage ('Tests') {
             steps {
+              echo 'Preparing VM'
               sh 'git clone https://github.com/scanf/bpf-ci-scripts workspace'
+              sh 'mv workspace/Vagrantfile Vagrantfile'
               sh 'vagrant up' 
               echo 'Compile kernel'
               sh 'vagrant ssh -c "workspace/scripts/1_compile_kernel.sh"'
