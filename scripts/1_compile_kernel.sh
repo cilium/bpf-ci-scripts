@@ -6,10 +6,6 @@ export 'IPROUTE_BRANCH'=${IPROUTE_BRANCH:-"net-next"}
 
 cd $HOME/workspace
 
-# XXX: remove when version 1 is release
-sudo apt-get update && sudo apt-get install -y make gcc libssl-dev bc libelf-dev \
-libcap-dev clang gcc-multilib llvm libncurses5-dev git pkg-config bison flex
-
 cp /boot/config-`uname -r` .config
 yes '' | make oldconfig
 ./scripts/config --disable CONFIG_DEBUG_INFO
