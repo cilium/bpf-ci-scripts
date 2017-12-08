@@ -1,7 +1,4 @@
 #!groovy
-# -*- mode: groovy -*-
-# vi: set ft=groovy :
-
 pipeline {
     agent {
       label 'vagrant'
