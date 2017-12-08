@@ -1,38 +1,39 @@
+#!groovy
+# -*- mode: groovy -*-
+# vi: set ft=groovy :
+
 pipeline {
     agent {
-        label 'vagrant'
+      label 'vagrant'
     }
     options {
-        timeout(time: 240, unit: 'MINUTES')
+      timeout(time: 240, unit: 'MINUTES')
     }
     stages {
-        stage ('Tests') {
-            steps {
-              sh "git --no-pager show"
-              echo 'Preparing VM'
-              sh 'git clone https://github.com/scanf/bpf-ci-scripts workspace || true'
-              sh 'git -C workspace checkout . || true'
-              sh 'git -C workspace pull origin master || true'
-              sh 'cp workspace/Vagrantfile Vagrantfile'
-              sh 'vagrant up' 
-              sh 'vagrant ssh -c "pwd"'
-              sh 'vagrant ssh -c "ls"'
-              echo 'Compile kernel'
-              sh 'vagrant ssh -c "workspace/scripts/1_compile_kernel.sh"'
-              echo 'Boot kernel'
-              sh 'vagrant ssh -c "workspace/scripts/2_boot_kernel.sh"'
-              echo 'Compile LLVM'
-              sh 'vagrant ssh -c "workspace/scripts/3_compile_llvm.sh"'
-              echo 'Run integration'
-              sh 'vagrant ssh -c "workspace/scripts/4_run_integration.sh"'
-              echo 'Run selftest'
-              sh 'vagrant ssh -c "workspace/scripts/5_run_selftest.sh /src/kernel"'
-            }
+      stage ('Tests') {
+        steps {
+          echo 'Step: Preparing VM'
+            sh 'git clone https://github.com/scanf/bpf-ci-scripts workspace || true'
+            sh 'git -C workspace checkout . || true'
+            sh 'git -C workspace pull origin master || true'
+            sh 'cp workspace/Vagrantfile Vagrantfile'
+            sh 'vagrant up' 
+            echo 'Step: Compile kernel'
+            sh 'vagrant ssh -c "workspace/workspace/scripts/1_compile_kernel.sh"'
+            echo 'Step: Boot kernel'
+            sh 'vagrant ssh -c "workspace/workspace/scripts/2_boot_kernel.sh"'
+            echo 'Step: Compile LLVM'
+            sh 'vagrant ssh -c "workspace/workspace/scripts/3_compile_llvm.sh"'
+            echo 'Step: Run integration'
+            sh 'vagrant ssh -c "workspace/workspace/scripts/4_run_integration.sh"'
+            echo 'Step: Run selftest'
+            sh 'vagrant ssh -c "workspace/workspace/scripts/5_run_selftest.sh /src/kernel"'
         }
+      }
     }
     post {
-        always {
-            sh 'vagrant destroy -f'
-        }
+      always {
+        sh 'vagrant destroy -f'
+      }
     }
 }
