@@ -2,6 +2,8 @@
 
 set -x
 
+export 'IPROUTE_BRANCH'=${IPROUTE_BRANCH:-"net-next"}
+
 cd $HOME/workspace
 
 # XXX: remove when version 1 is release
@@ -42,7 +44,7 @@ echo 9pnet | sudo tee --append /etc/modules
 
 # iproute2 installation
 cd $HOME
-git clone -b net-next git://git.kernel.org/pub/scm/linux/kernel/git/shemminger/iproute2.git
+git clone -b "${IPROUTE_BRANCH}" git://git.kernel.org/pub/scm/linux/kernel/git/shemminger/iproute2.git
 cd iproute2/
 ./configure
 make -j `getconf _NPROCESSORS_ONLN`
