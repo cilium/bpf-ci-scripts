@@ -4,11 +4,9 @@ pipeline {
     }
     options {
         timeout(time: 240, unit: 'MINUTES')
-        timestamps()
     }
     stages {
         stage ('Tests') {
-            environment { MEMORY = '2048' }
             steps {
               sh 'git clone https://github.com/scanf/bpf-ci-scripts workspace'
               sh 'vagrant up' 
