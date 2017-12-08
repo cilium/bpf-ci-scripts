@@ -8,6 +8,7 @@ pipeline {
     stages {
         stage ('Tests') {
             steps {
+              sh "git --no-pager show"
               echo 'Preparing VM'
               sh 'git clone https://github.com/scanf/bpf-ci-scripts workspace || true'
               sh 'git -C workspace checkout . || true'
