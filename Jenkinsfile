@@ -13,11 +13,11 @@ pipeline {
             }
             steps {
 		    "Start VM": { sh 'vagrant up' },
-                    "Compile kernel": { vagrant ssh -c "scripts/1_compile_kernel.sh" },
-                    "Boot kernel": { vagrant ssh -c "scripts/2_boot_kernel.sh" },
-                    "Compile LLVM": { vagrant ssh -c "scripts/3_compile_llvm.sh" },
-                    "Run integration": { vagrant ssh -c "scripts/4_run_integration.sh" },
-                    "Run selftest": { vagrant ssh -c "scripts/5_run_selftest.sh /src/kernel" },
+                    "Compile kernel": { vagrant ssh -c "workspace/scripts/1_compile_kernel.sh" },
+                    "Boot kernel": { vagrant ssh -c "workspace/scripts/2_boot_kernel.sh" },
+                    "Compile LLVM": { vagrant ssh -c "workspace/scripts/3_compile_llvm.sh" },
+                    "Run integration": { vagrant ssh -c "workspace/scripts/4_run_integration.sh" },
+                    "Run selftest": { vagrant ssh -c "workspace/scripts/5_run_selftest.sh /src/kernel" },
             }
         }
     }
