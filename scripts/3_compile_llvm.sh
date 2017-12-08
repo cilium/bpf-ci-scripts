@@ -2,8 +2,12 @@
 
 set -x
 
-LLVM_TREE=/src/llvm
-BUILD_DIR=$LLVM_TREE/build
+CLANG_SRC=/src/llvm/tools/clang
+LLVM_SRC=/src/llvm
+BUILD_DIR=$LLVM_SRC/build
+
+git -C $LLVM_SRC pull origin master
+git -C $CLANG_SRC pull origin master
 
 mkdir -pv $BUILD_DIR
 cd $BUILD_DIR
