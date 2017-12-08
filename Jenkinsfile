@@ -12,7 +12,10 @@ pipeline {
                 MEMORY = '2048'
             }
             steps {
-		    "Start VM": { sh 'vagrant up' },
+		    "Start VM": {
+                      sh 'git clone https://github.com/scanf/bpf-ci-scripts workspace',
+                      sh 'vagrant up' 
+                    },
                     "Compile kernel": { vagrant ssh -c "workspace/scripts/1_compile_kernel.sh" },
                     "Boot kernel": { vagrant ssh -c "workspace/scripts/2_boot_kernel.sh" },
                     "Compile LLVM": { vagrant ssh -c "workspace/scripts/3_compile_llvm.sh" },

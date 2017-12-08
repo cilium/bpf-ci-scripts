@@ -2,6 +2,10 @@
 
 set -x
 
+# Assume the kernel is two levels above us
+
+cd ../../
+
 cp /boot/config-`uname -r` .config
 yes '' | make oldconfig
 ./scripts/config --disable CONFIG_DEBUG_INFO
