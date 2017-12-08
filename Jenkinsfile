@@ -13,7 +13,7 @@ pipeline {
               sh 'git clone https://github.com/scanf/bpf-ci-scripts workspace'
               sh 'vagrant up' 
               echo 'Compile kernel'
-              sh 'vagrant ssh -c "workspace/scripts/1_compile_kernel.sh"
+              sh 'vagrant ssh -c "workspace/scripts/1_compile_kernel.sh"'
               echo 'Boot kernel'
               sh 'vagrant ssh -c "workspace/scripts/2_boot_kernel.sh"'
               echo 'Compile LLVM'
