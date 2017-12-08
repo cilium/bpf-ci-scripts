@@ -5,7 +5,7 @@ set -x
 cd $HOME/workspace
 
 # XXX: remove when version 1 is release
-apt-get update && apt-get install -y make gcc libssl-dev bc libelf-dev \
+sudo apt-get update && sudo apt-get install -y make gcc libssl-dev bc libelf-dev \
 libcap-dev clang gcc-multilib llvm libncurses5-dev git pkg-config bison flex
 
 cp /boot/config-`uname -r` .config
