@@ -17,31 +17,31 @@ pipeline {
         stage ('Compile kernel') {
             environment { MEMORY = '2048' }
             steps {
-              vagrant ssh -c "workspace/scripts/1_compile_kernel.sh"
+              sh 'vagrant ssh -c "workspace/scripts/1_compile_kernel.sh"'
             }
         }
         stage ('Boot kernel') {
             environment { MEMORY = '2048' }
             steps {
-              vagrant ssh -c "workspace/scripts/2_boot_kernel.sh"
+              sh 'vagrant ssh -c "workspace/scripts/2_boot_kernel.sh"'
             }
         }
         stage ('Compile LLVM') {
             environment { MEMORY = '2048' }
             steps {
-                vagrant ssh -c "workspace/scripts/3_compile_llvm.sh"
+                sh 'vagrant ssh -c "workspace/scripts/3_compile_llvm.sh"'
             }
         }
         stage ('Run integration') {
             environment { MEMORY = '2048' }
             steps {
-                vagrant ssh -c "workspace/scripts/4_run_integration.sh"
+                sh 'vagrant ssh -c "workspace/scripts/4_run_integration.sh"'
             }
         }
-        stage ('Run integration') {
+        stage ('Run selftest') {
             environment { MEMORY = '2048' }
             steps {
-                vagrant ssh -c "workspace/scripts/5_run_selftest.sh /src/kernel"
+                sh 'vagrant ssh -c "workspace/scripts/5_run_selftest.sh /src/kernel"'
             }
         }
     }
