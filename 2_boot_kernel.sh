@@ -1,3 +1,6 @@
 #!/bin/bash
 
-echo "TODO"
+set -x
+
+sudo reboot
+vagrant up
