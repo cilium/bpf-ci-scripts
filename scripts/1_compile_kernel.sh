@@ -4,6 +4,9 @@ set -x
 
 cd $HOME/workspace
 
+# XXX: remove when version 1 is release
+apt-get update && apt-get install -y bison
+
 cp /boot/config-`uname -r` .config
 yes '' | make oldconfig
 ./scripts/config --disable CONFIG_DEBUG_INFO
