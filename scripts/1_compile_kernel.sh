@@ -25,8 +25,8 @@ yes '' | make oldconfig
 make -j `getconf _NPROCESSORS_ONLN` LOCALVERSION=-custom
 
 # clean all old kernels
-rm -Rf /lib/modules/*
-rm /boot/*
+sudo rm -Rf /lib/modules/*
+sudo rm /boot/*
 
 sudo make modules_install
 sudo make install
@@ -34,9 +34,9 @@ sudo make headers_install INSTALL_HDR_PATH=/usr/
 
 # Temporary hack for Ubuntu
 sudo cp /usr/include/asm/unistd* /usr/include/x86_64-linux-gnu/asm/
-echo 9p >> /etc/modules
-echo 9pnet_virtio >> /etc/modules
-echo 9pnet >> /etc/modules
+echo 9p | sudo tee --append /etc/modules
+echo 9pnet_virtio | sudo tee --apend /etc/modules
+echo 9pnet | sudo tee --append /etc/modules
 
 # iproute2 installation
 cd $HOME
