@@ -8,5 +8,5 @@ Vagrant.configure("2") do |config|
     v.memory = 2048
     v.cpus = 2
   end
-  config.vm.synced_folder '.', '/home/vagrant/', type: "rsync"
+  config.vm.synced_folder '.', '/home/vagrant/src', type: "rsync"
 end
