@@ -3,7 +3,7 @@
 
 Vagrant.configure("2") do |config|
   config.vm.box = "scanf/bpf-base"
-  config.vm.box_version = "1"
+  config.vm.box_version = "2"
   config.vm.provider "virtualbox" do |v|
     v.memory = 4096
     v.cpus = 4
