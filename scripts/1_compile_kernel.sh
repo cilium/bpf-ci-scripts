@@ -12,7 +12,7 @@ if [ -z $LOCAL_CHECK ]; then
 else
   git clone --depth 1 git://git.kernel.org/pub/scm/linux/kernel/git/bpf/bpf-next.git $HOME/k || true
   cd $HOME/k
-end
+fi
 
 if grep bpf.git .git/config; then
   export IPROUTE_BRANCH="master"
