@@ -33,10 +33,6 @@ make olddefconfig
 # make and install latest kernel
 make -j `getconf _NPROCESSORS_ONLN` LOCALVERSION=-custom
 
-# clean all old kernels
-sudo rm -Rf /lib/modules/*
-sudo rm /boot/* || true
-
 sudo make modules_install
 sudo make install
 sudo make headers_install INSTALL_HDR_PATH=/usr/
