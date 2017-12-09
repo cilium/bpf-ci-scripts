@@ -38,6 +38,6 @@ sudo make headers_install INSTALL_HDR_PATH=/usr/
 cd $HOME
 git clone -b "${IPROUTE_BRANCH}" git://git.kernel.org/pub/scm/linux/kernel/git/shemminger/iproute2.git
 cd iproute2/
-./configure
+./configure --prefix=/usr
 make -j `getconf _NPROCESSORS_ONLN`
 sudo make install
