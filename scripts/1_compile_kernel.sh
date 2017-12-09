@@ -8,10 +8,8 @@ export 'KCONFIG'=${KCONFIG:-"config-`uname -r`"}
 # Use env var to make it easier to test the files on workstations with
 # different directory layout.
 if [ -z $LOCAL_CHECK ]; then
-  cp ~/workspace/workspace/scripts/.config .config
   cd $HOME/workspace
 else
-  cp ~/workspace/scripts/.config .config
   git clone --depth 1 git://git.kernel.org/pub/scm/linux/kernel/git/bpf/bpf-next.git $HOME/k || true
   cd $HOME/k
 fi
@@ -22,7 +20,9 @@ elif grep linux-stable.git .git/config; then
   export IPROUTE_BRANCH="master"
 fi
 
-make localmodconfig
+cp /boot/config-`uname -r` .config
+yes '' | make oldconfig
+yes '' | make localmodconfig
 ./scripts/config --disable CONFIG_DEBUG_INFO
 ./scripts/config --disable CONFIG_DEBUG_KERNEL
 ./scripts/config --enable CONFIG_BPF
