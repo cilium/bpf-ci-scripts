@@ -5,8 +5,8 @@ Vagrant.configure("2") do |config|
   config.vm.box = "scanf/bpf-base"
   config.vm.box_version = "2"
   config.vm.provider "virtualbox" do |v|
-    v.memory = 4096
-    v.cpus = 4
+    v.memory = ENV['VM_MEMORY'].to_i
+    v.cpus = ENV['VM_CPUS'].to_i
   end
   config.vm.boot_timeout = 5400
   config.vm.synced_folder '.', '/home/vagrant/workspace', type: "rsync"

@@ -8,6 +8,10 @@ pipeline {
     }
     stages {
       stage ('Tests') {
+        environment {
+          VM_MEMORY = '4096'
+          VM_CPUS = '4'
+        }
         steps {
           echo 'Step: Preparing VM'
             sh 'git clone https://github.com/scanf/bpf-ci-scripts workspace || true'
