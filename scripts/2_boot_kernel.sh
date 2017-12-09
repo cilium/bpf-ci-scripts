@@ -3,4 +3,3 @@
 set -x
 
 sudo reboot
-vagrant up
