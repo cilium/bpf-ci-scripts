@@ -6,7 +6,8 @@ export 'IPROUTE_BRANCH'=${IPROUTE_BRANCH:-"net-next"}
 
 cd $HOME/workspace
 
-cp /boot/config-`uname -r` .config
+#cp /boot/config-`uname -r` .config
+curl https://raw.githubusercontent.com/regit/regit-config/master/virtualbox/config-3.5-vbox -o .config
 yes '' | make oldconfig
 ./scripts/config --disable CONFIG_DEBUG_INFO
 ./scripts/config --disable CONFIG_DEBUG_KERNEL
