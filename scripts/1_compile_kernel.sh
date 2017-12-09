@@ -35,7 +35,7 @@ make -j `getconf _NPROCESSORS_ONLN` LOCALVERSION=-custom
 
 # clean all old kernels
 sudo rm -Rf /lib/modules/*
-sudo rm /boot/*
+sudo rm /boot/* || true
 
 sudo make modules_install
 sudo make install
