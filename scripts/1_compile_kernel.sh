@@ -21,8 +21,9 @@ elif grep linux-stable.git .git/config; then
 fi
 
 cp /boot/config-`uname -r` .config
-yes '' | make oldconfig
+(yes '' | make oldconfig) || true
 yes '' | make localmodconfig
+(yes '' | make oldconfig) || true
 ./scripts/config --disable CONFIG_DEBUG_INFO
 ./scripts/config --disable CONFIG_DEBUG_KERNEL
 ./scripts/config --enable CONFIG_BPF
@@ -51,3 +52,4 @@ cd iproute2/
 ./configure --prefix=/usr
 make -j `getconf _NPROCESSORS_ONLN`
 sudo make install
+exit 0
