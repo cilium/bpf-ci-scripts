@@ -22,8 +22,7 @@ elif grep linux-stable.git .git/config; then
   export IPROUTE_BRANCH="master"
 fi
 
-yes '' | make oldconfig
-yes '' | make localmodconfig
+make olddefconfig
 ./scripts/config --disable CONFIG_DEBUG_INFO
 ./scripts/config --disable CONFIG_DEBUG_KERNEL
 ./scripts/config --enable CONFIG_BPF
