@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -x
+set -xe
 
 KDIR=$1 # Kernel tree
 cd $KDIR

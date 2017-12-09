@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -x
+set -xe
 
 CLANG_SRC=/src/llvm/tools/clang
 LLVM_SRC=/src/llvm
