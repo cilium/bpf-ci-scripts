@@ -20,8 +20,9 @@ elif grep linux-stable.git .git/config; then
   export IPROUTE_BRANCH="master"
 fi
 
-cp /boot/config-`uname -r` .config
-make olddefconfig
+cp ~/workspace/.config .config
+yes '' | make oldconfig
+yes '' | make localmodconfig
 ./scripts/config --disable CONFIG_DEBUG_INFO
 ./scripts/config --disable CONFIG_DEBUG_KERNEL
 ./scripts/config --enable CONFIG_BPF
