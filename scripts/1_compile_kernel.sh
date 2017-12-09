@@ -3,12 +3,13 @@
 set -x
 
 export 'IPROUTE_BRANCH'=${IPROUTE_BRANCH:-"net-next"}
+export 'KCONFIG'=${KCONFIG:-"https://raw.githubusercontent.com/regit/regit-config/master/virtualbox/config-3.19-vbox"}
 
 cd $HOME/workspace
 
 #cp /boot/config-`uname -r` .config
-curl https://raw.githubusercontent.com/regit/regit-config/master/virtualbox/config-3.5-vbox -o .config
-yes '' | make oldconfig
+curl "${KCONFIG}" -o .config
+make olddefconfig
 ./scripts/config --disable CONFIG_DEBUG_INFO
 ./scripts/config --disable CONFIG_DEBUG_KERNEL
 ./scripts/config --enable CONFIG_BPF
