@@ -18,7 +18,7 @@ pipeline {
             echo 'Step: Compile kernel'
             sh 'vagrant ssh -c "workspace/workspace/scripts/1_compile_kernel.sh"'
             echo 'Step: Boot kernel'
-            sh 'vagrant ssh -c "workspace/workspace/scripts/2_boot_kernel.sh"'
+            sh 'vagrant ssh -c "sudo reboot"'
             echo 'Step: Compile LLVM'
             sh 'vagrant ssh -c "workspace/workspace/scripts/3_compile_llvm.sh"'
             echo 'Step: Run integration'
