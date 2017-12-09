@@ -6,6 +6,9 @@ CLANG_SRC=/src/llvm/tools/clang
 LLVM_SRC=/src/llvm
 BUILD_DIR=$LLVM_SRC/build
 
+# XXX: remove below line when image v2 is released
+sudo chown vagrant:vagrant -R $LLVM_SRC
+
 git -C $LLVM_SRC pull origin master
 git -C $CLANG_SRC pull origin master
 
