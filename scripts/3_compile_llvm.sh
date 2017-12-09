@@ -6,9 +6,6 @@ CLANG_SRC=/src/llvm/tools/clang
 LLVM_SRC=/src/llvm
 BUILD_DIR=$LLVM_SRC/build
 
-echo "TODO: enable"
-exit 0
-
 git -C $LLVM_SRC pull origin master
 git -C $CLANG_SRC pull origin master
 
