@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -x
+set -xe
 
 export 'IPROUTE_BRANCH'=${IPROUTE_BRANCH:-"net-next"}
 export 'KCONFIG'=${KCONFIG:-"https://raw.githubusercontent.com/regit/regit-config/master/virtualbox/config-3.19-vbox"}
