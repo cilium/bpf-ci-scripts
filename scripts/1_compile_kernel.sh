@@ -20,6 +20,7 @@ make olddefconfig
 ./scripts/config --enable CONFIG_BPF_JIT
 ./scripts/config --enable CONFIG_HAVE_BPF_JIT
 ./scripts/config --enable CONFIG_BPF_EVENTS
+./scripts/config --enable BPF_STREAM_PARSER
 ./scripts/config --module CONFIG_TEST_BPF
 ./scripts/config --disable CONFIG_LUSTRE_FS
 
