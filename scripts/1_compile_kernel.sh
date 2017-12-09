@@ -7,6 +7,12 @@ export 'KCONFIG'=${KCONFIG:-"https://raw.githubusercontent.com/regit/regit-confi
 
 cd $HOME/workspace
 
+if grep bpf.git .git/config; then
+  export IPROUTE_BRANCH="master"
+elif grep linux-stable.git .git/config; then
+  export IPROUTE_BRANCH="master"
+fi
+
 #cp /boot/config-`uname -r` .config
 curl "${KCONFIG}" -o .config
 make olddefconfig
