@@ -3,9 +3,16 @@
 set -xe
 
 export 'IPROUTE_BRANCH'=${IPROUTE_BRANCH:-"net-next"}
-export 'KCONFIG'=${KCONFIG:-"https://raw.githubusercontent.com/regit/regit-config/master/virtualbox/config-3.19-vbox"}
+export 'KCONFIG'=${KCONFIG:-"config-`uname -r`"}
 
-cd $HOME/workspace
+# Use env var to make it easier to test the files on workstations with
+# different directory layout.
+if [ -z $LOCAL_CHECK ]; then
+  cd $HOME/workspace
+else
+  git clone --depth 1 git://git.kernel.org/pub/scm/linux/kernel/git/bpf/bpf-next.git $HOME/k || true
+  cd $HOME/k
+end
 
 if grep bpf.git .git/config; then
   export IPROUTE_BRANCH="master"
@@ -13,8 +20,7 @@ elif grep linux-stable.git .git/config; then
   export IPROUTE_BRANCH="master"
 fi
 
-#cp /boot/config-`uname -r` .config
-curl "${KCONFIG}" -o .config
+cp /boot/config-`uname -r` .config
 make olddefconfig
 ./scripts/config --disable CONFIG_DEBUG_INFO
 ./scripts/config --disable CONFIG_DEBUG_KERNEL
