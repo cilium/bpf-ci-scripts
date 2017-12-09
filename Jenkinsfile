@@ -24,7 +24,7 @@ pipeline {
             echo 'Step: Run integration'
             sh 'vagrant ssh -c "workspace/workspace/scripts/4_run_integration.sh"'
             echo 'Step: Run selftest'
-            sh 'vagrant ssh -c "workspace/workspace/scripts/5_run_selftest.sh /src/kernel"'
+            sh 'vagrant ssh -c "workspace/workspace/scripts/5_run_selftest.sh ~/workspace"'
         }
       }
     }
