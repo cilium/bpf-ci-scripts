@@ -37,6 +37,11 @@ yes '' | make localmodconfig
 ./scripts/config --enable BPF_STREAM_PARSER
 ./scripts/config --module CONFIG_TEST_BPF
 ./scripts/config --disable CONFIG_LUSTRE_FS
+./scripts/config --enable CONFIG_CGROUP_BPF
+./scripts/config --module CONFIG_NET_SCH_INGRESS
+./scripts/config --enable CONFIG_NET_CLS_ACT
+./scripts/config --enable CONFIG_LWTUNNEL_BPF
+./scripts/config --enable CONFIG_HAVE_EBPF_JIT
 
 # make and install latest kernel
 make -j `getconf _NPROCESSORS_ONLN` LOCALVERSION=-custom
