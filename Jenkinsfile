@@ -30,7 +30,7 @@ pipeline {
       }
       stage ('Run Cilium selected tests') {
         steps {
-            sh 'vagrant ssh -c "workspace/workspace/scripts/4_run_integration.sh"'
+            sh 'vagrant ssh -c "workspace/workspace/scripts/4_run_integration.sh" || true'
         }
       }
       stage ('Run selftest') {
