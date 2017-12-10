@@ -7,24 +7,32 @@ pipeline {
       timeout(time: 240, unit: 'MINUTES')
     }
     stages {
-      stage ('Tests') {
+      stage ('Preparing VM (compile and boot kernel)') {
         environment {
           VM_MEMORY = '4096'
           VM_CPUS = '4'
         }
         steps {
-          echo 'Step: Preparing VM'
             sh 'git clone https://github.com/scanf/bpf-ci-scripts workspace || true'
             sh 'git -C workspace checkout . || true'
             sh 'git -C workspace pull origin master || true'
             sh 'cp workspace/Vagrantfile Vagrantfile'
             sh 'vagrant plugin install vagrant-reload'
             sh 'vagrant up'
-            echo 'Step: Compile LLVM'
-            sh 'vagrant ssh -c "workspace/workspace/scripts/3_get_llvm_snapshot.sh"'
-            echo 'Step: Run integration'
+        }
+      }
+      stage ('Install LLVM development branch') {
+        steps {
+          sh 'vagrant ssh -c "workspace/workspace/scripts/3_get_llvm_snapshot.sh"'
+        }
+      }
+      stage ('Run Cilium selected tests') {
+        steps {
             sh 'vagrant ssh -c "workspace/workspace/scripts/4_run_integration.sh"'
-            echo 'Step: Run selftest'
+        }
+      }
+      stage ('Run selftest') {
+        steps {
             sh 'vagrant ssh -c "workspace/workspace/scripts/5_run_selftest.sh ~/workspace"'
         }
       }
