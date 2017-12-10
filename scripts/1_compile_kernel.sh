@@ -2,6 +2,8 @@
 
 set -xe
 
+exit 1
+
 export 'IPROUTE_BRANCH'=${IPROUTE_BRANCH:-"net-next"}
 export 'KCONFIG'=${KCONFIG:-"config-`uname -r`"}
 
