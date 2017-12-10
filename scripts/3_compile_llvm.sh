@@ -2,6 +2,9 @@
 
 set -xe
 
+echo TODO enable
+exit 0
+
 CLANG_SRC=/src/llvm/tools/clang
 LLVM_SRC=/src/llvm
 BUILD_DIR=$LLVM_SRC/build
