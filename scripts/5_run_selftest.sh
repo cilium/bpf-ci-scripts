@@ -17,6 +17,9 @@ KDIR=$1 # Kernel tree
 cd $KDIR
 make headers_install
 
+# TODO remove when vm image v3 is released
+sudo apt-get update && sudo apt-get install -y binutils-dev
+
 cd $KDIR/tools/bpf/bpftool/
 make
 sudo make install
