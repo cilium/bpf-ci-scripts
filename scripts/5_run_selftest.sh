@@ -4,6 +4,8 @@ set -xe
 
 function run_selftest() {
   export PATH=$1/bin:$PATH
+  clang --version
+  llc --version
   make
   sudo ./test_verifier
   sudo make run_tests
