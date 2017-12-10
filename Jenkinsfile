@@ -21,7 +21,7 @@ pipeline {
             sh 'vagrant plugin install vagrant-reload'
             sh 'vagrant up'
             echo 'Step: Compile LLVM'
-            sh 'vagrant ssh -c "workspace/workspace/scripts/3_compile_llvm.sh"'
+            sh 'vagrant ssh -c "workspace/workspace/scripts/3_get_llvm_snapshot.sh"'
             echo 'Step: Run integration'
             sh 'vagrant ssh -c "workspace/workspace/scripts/4_run_integration.sh"'
             echo 'Step: Run selftest'
