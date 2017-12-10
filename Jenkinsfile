@@ -42,9 +42,12 @@ pipeline {
 	sh 'vagrant destroy -f'
       }
       failure {
-	mail to: 'alexander@alemayhu.com',
-	     subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
-	     body: "Details at ${env.BUILD_URL}consoleFull"
+	emailext (
+	    to: 'alexander@alemayhu.com',
+	    subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+	    body: "Details at ${env.BUILD_URL}consoleFull",
+	    attachLog: true,
+	    )
       }
       success {
 	mail to: 'alexander@alemayhu.com',
