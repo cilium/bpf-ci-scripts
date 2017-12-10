@@ -31,7 +31,17 @@ pipeline {
     }
     post {
       always {
-        sh 'vagrant destroy -f'
+	sh 'vagrant destroy -f'
+      }
+      failure {
+	mail to: 'alexander@alemayhu.com',
+	     subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+	     body: "Something is wrong with ${env.BUILD_URL}"
+      }
+      success {
+	mail to: 'alexander@alemayhu.com',
+	     subject: "Completed Pipeline: ${currentBuild.fullDisplayName}",
+	     body: "Details at ${env.BUILD_URL}"
       }
     }
 }
