@@ -18,6 +18,8 @@ pipeline {
             sh 'git -C workspace pull origin master || true'
             sh 'cp workspace/Vagrantfile Vagrantfile'
             sh 'vagrant plugin install vagrant-reload'
+            sh 'vagrant plugin install vagrant-scp'
+	    sh 'mkdir -pv ARTIFACTS'
             sh 'vagrant up'
         }
       }
@@ -39,7 +41,10 @@ pipeline {
     }
     post {
       always {
+	sh 'vagrant scp :workspace/tools/testing/selftests/bpf/ ARTIFACTS/selftest-bpf || true'
+	sh 'vagrant scp :workspace/.config ARTIFACTS/KernelConfig.txt || true'
 	sh 'vagrant destroy -f'
+	archiveArtifacts artifacts: 'ARTIFACTS/**/*.*', fingerprint: true
       }
       failure {
 	emailext (
