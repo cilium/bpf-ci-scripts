@@ -16,7 +16,9 @@ KDIR=$1 # Kernel tree
 cd $KDIR
 make headers_install
 
+set +e
 (cd $KDIR/tools/bpf/bpftool/ && make && sudo make install) || true
+set -e
 
 cd $KDIR/tools/testing/selftests/bpf/
 
