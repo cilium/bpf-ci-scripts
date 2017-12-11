@@ -4,7 +4,7 @@ pipeline {
       label 'vagrant'
     }
     options {
-      timeout(time: 240, unit: 'MINUTES')
+      timeout(time: 70, unit: 'MINUTES')
     }
     stages {
       stage ('Preparing VM (compile and boot kernel)') {
