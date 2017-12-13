@@ -10,4 +10,4 @@ echo "deb-src http://apt.llvm.org/xenial/ llvm-toolchain-xenial main" | sudo tee
 sudo apt-get update || true
 sudo apt-get -y install clang-6.0 lldb-6.0 lld-6.0 || true
 
-sudo apt-get install -f
+sudo apt-get install -f -y
