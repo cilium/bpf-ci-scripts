@@ -41,8 +41,7 @@ pipeline {
     }
     post {
       always {
-	sh 'vagrant scp :workspace/tools/testing/selftests/bpf/ ARTIFACTS/selftest-bpf || true'
-	sh 'vagrant scp :workspace/.config ARTIFACTS/KernelConfig.txt || true'
+	sh './workspace/scripts/6_artifacts.sh'
 	sh './workspace/scripts/6_cleanup.sh'
 	archiveArtifacts artifacts: 'ARTIFACTS/**/*.*', fingerprint: true
       }
