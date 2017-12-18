@@ -26,7 +26,7 @@ if ! test -d $TEST_DIR; then
 fi
 set -e
 
-cd TEST_DIR=$KDIR/tools/testing/selftests/bpf/
+cd $TEST_DIR
 
 # Used the default version (3.8.1)
 run_selftest
