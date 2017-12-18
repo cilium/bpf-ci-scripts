@@ -13,14 +13,7 @@ pipeline {
           VM_CPUS = '4'
         }
         steps {
-            sh 'git clone https://github.com/scanf/bpf-ci-scripts workspace || true'
-            sh 'git -C workspace checkout . || true'
-            sh 'git -C workspace pull origin master || true'
-            sh 'cp workspace/Vagrantfile Vagrantfile'
-            sh 'vagrant plugin install vagrant-reload'
-            sh 'vagrant plugin install vagrant-scp'
-	    sh 'mkdir -pv ARTIFACTS'
-            sh 'vagrant up'
+            sh 'vagrant ssh -c "workspace/workspace/scripts/0_setup_vm.sh"'
         }
       }
       stage ('Install LLVM development branch') {
