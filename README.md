@@ -6,9 +6,9 @@ the VM. The scripts mainly does the following
 1. Clone or fetch this repository from GitHub
 2. Copy the Vagrantfile and VM related steps 
 3. Run stages
-   3.1 Install latest LLVM snapshot in newly booted kernel
-   3.2 Run Cilium tests (skipped)
-   3.3 Run BPF selftest with LLVM versions 3.9 - 5.0.0 and snapshot.
+   - Install latest LLVM snapshot in newly booted kernel
+   - Run Cilium tests (skipped)
+   - Run BPF selftest with LLVM versions 3.9 - 5.0.0 and snapshot.
 4. Get artificats and cleanup
 5. Send email 
 
