@@ -19,13 +19,12 @@ make headers_install
 
 set +e
 (cd $KDIR/tools/bpf/bpftool/ && make && sudo make install) || true
-set -e
-
 if ! test -d $TEST_DIR; then
   echo "XXX: could not find BPF selftests at $TEST_DIR, maybe too old kernel?"
   echo "XXX: Aborting run selftest"
   exit 0
 fi
+set -e
 
 cd TEST_DIR=$KDIR/tools/testing/selftests/bpf/
 
