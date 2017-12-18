@@ -13,7 +13,7 @@ pipeline {
           VM_CPUS = '4'
         }
         steps {
-            sh 'vagrant ssh -c "workspace/workspace/scripts/0_setup_vm.sh"'
+            sh './workspace/scripts/0_setup_vm.sh'
         }
       }
       stage ('Install LLVM development branch') {
