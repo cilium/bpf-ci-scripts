@@ -8,7 +8,7 @@ the VM. The scripts mainly does the following
 3. Run stages
    - Install latest LLVM snapshot in newly booted kernel
    - Run Cilium tests (skipped)
-   - Run BPF selftest with LLVM versions 3.9 - 5.0.0 and snapshot.
+   - Run BPF selftest with LLVM versions 3.8.1 - 5.0.0 and snapshot.
 4. Get artificats and cleanup
 5. Send email 
 
