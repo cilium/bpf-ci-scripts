@@ -43,7 +43,7 @@ pipeline {
       always {
 	sh './workspace/scripts/6_artifacts.sh'
 	sh './workspace/scripts/6_cleanup.sh'
-	archiveArtifacts artifacts: 'ARTIFACTS/**/*.*', fingerprint: true
+	archiveArtifacts artifacts: 'ARTIFACTS/**', fingerprint: true
       }
       failure {
 	emailext (
