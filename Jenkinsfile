@@ -19,7 +19,6 @@ pipeline {
             sh 'cp workspace/Vagrantfile Vagrantfile'
             sh 'vagrant plugin install vagrant-reload'
             sh 'vagrant plugin install vagrant-scp'
-	    sh 'mkdir -pv ARTIFACTS'
             sh 'vagrant up'
         }
       }
@@ -43,7 +42,7 @@ pipeline {
       always {
 	sh './workspace/scripts/6_artifacts.sh'
 	sh './workspace/scripts/6_cleanup.sh'
-	archiveArtifacts artifacts: 'ARTIFACTS/**', fingerprint: true
+	archiveArtifacts artifacts: 'ARTIFACTS/**', fingerprint: true, allowEmptyArchive: true
       }
       failure {
 	emailext (
