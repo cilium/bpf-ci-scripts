@@ -2,5 +2,5 @@
 
 vagrant destroy -f
 
-rm -rvf $HOME/.vagrant.d/
-rm -rvf $HOME/VirtualBox\ VMs/
+rm -rf $HOME/.vagrant.d/
+rm -rf $HOME/VirtualBox\ VMs/
