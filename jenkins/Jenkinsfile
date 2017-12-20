@@ -7,7 +7,7 @@ pipeline {
       timeout(time: 70, unit: 'MINUTES')
     }
     stages {
-      stage ('Preparing VM (compile and boot kernel)') {
+      stage ('Bootstrap kernel') {
         environment {
           VM_MEMORY = '4096'
           VM_CPUS = '4'
@@ -22,17 +22,17 @@ pipeline {
             sh 'vagrant up'
         }
       }
-      stage ('Install LLVM development branch') {
+      stage ('LLVM nightly') {
         steps {
           sh 'vagrant ssh -c "workspace/workspace/scripts/3_get_llvm_snapshot.sh"'
         }
       }
-      stage ('Run Cilium selected tests') {
+      stage ('Cilium tests (skipped)') {
         steps {
             sh 'vagrant ssh -c "workspace/workspace/scripts/4_run_integration.sh" || true'
         }
       }
-      stage ('Run selftest') {
+      stage ('BPF selftest') {
         steps {
             sh 'vagrant ssh -c "workspace/workspace/scripts/5_run_selftest.sh ~/workspace"'
         }
