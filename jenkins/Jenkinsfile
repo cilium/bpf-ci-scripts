@@ -53,7 +53,7 @@ pipeline {
 	    )
       }
       success {
-	mail to: 'alexander@alemayhu.com',
+	mail to: 'alexander@alemayhu.com,bpf@iogearbox.net',
 	     subject: "Completed Pipeline: ${currentBuild.fullDisplayName}",
 	     body: "Details at ${env.BUILD_URL}"
       }
