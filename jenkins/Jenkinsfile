@@ -13,7 +13,7 @@ pipeline {
           VM_CPUS = '4'
         }
         steps {
-            sh 'git clone https://github.com/scanf/bpf-ci-scripts workspace || true'
+            sh 'git clone https://github.com/cilium/bpf-ci-scripts workspace || true'
             sh 'git -C workspace checkout . || true'
             sh 'git -C workspace pull origin master || true'
             sh 'cp workspace/Vagrantfile Vagrantfile'
