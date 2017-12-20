@@ -42,6 +42,7 @@ yes '' | make localmodconfig
 ./scripts/config --enable CONFIG_NET_CLS_ACT
 ./scripts/config --enable CONFIG_LWTUNNEL_BPF
 ./scripts/config --enable CONFIG_HAVE_EBPF_JIT
+./scripts/config --module CONFIG_NETDEVSIM
 
 # make and install latest kernel
 make -j `getconf _NPROCESSORS_ONLN` LOCALVERSION=-custom
