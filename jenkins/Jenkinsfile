@@ -46,14 +46,14 @@ pipeline {
       }
       failure {
 	emailext (
-	    to: 'alexander@alemayhu.com',
+	    to: "alexander@alemayhu.com,bpf@iogearbox.net",
 	    subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
 	    body: "Details at ${env.BUILD_URL}consoleFull",
 	    attachLog: true,
 	    )
       }
       success {
-	mail to: 'alexander@alemayhu.com,bpf@iogearbox.net',
+	mail to: "alexander@alemayhu.com"; "bpf@iogearbox.net",
 	     subject: "Completed Pipeline: ${currentBuild.fullDisplayName}",
 	     body: "Details at ${env.BUILD_URL}"
       }
