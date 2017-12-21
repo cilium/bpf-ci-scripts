@@ -45,6 +45,11 @@ pipeline {
             sh 'vagrant ssh -c "workspace/workspace/scripts/4_run_integration.sh" || true'
         }
       }
+      stage ('Install bpftool') {
+        steps {
+            sh 'vagrant ssh -c "workspace/workspace/scripts/5_install_bpftool.sh ~/workspace"'
+        }
+      }
       stage ('BPF selftest') {
         steps {
             sh 'vagrant ssh -c "workspace/workspace/scripts/5_run_selftest.sh ~/workspace"'
