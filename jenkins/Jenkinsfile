@@ -49,7 +49,6 @@ pipeline {
 	    to: "alexander@alemayhu.com,bpf@iogearbox.net",
 	    subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
 	    body: "Details at ${env.BUILD_URL}consoleFull",
-	    attachLog: true,
 	    )
       }
       success {
