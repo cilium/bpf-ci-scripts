@@ -1,4 +1,17 @@
 #!groovy
+
+def sendNotification(prefix, recipientList) {
+  emailext (
+      to: "${recipientList}",
+      subject: "${prefix}${currentBuild.fullDisplayName}",
+      body: "Wall of text at ${env.BUILD_URL}consoleFull\n\n"+
+      "On tree ${env.GIT_URL}\n"+
+      "On branch ${env.GIT_BRANCH}\n"+
+      "Using commit ${env.GIT_COMMIT}\n"+
+      "Using builder ${env.NODE_NAME}\n",
+      )
+}
+
 pipeline {
     agent {
       label 'vagrant'
@@ -45,16 +58,10 @@ pipeline {
 	archiveArtifacts artifacts: 'ARTIFACTS/**', fingerprint: true, allowEmptyArchive: true
       }
       failure {
-	emailext (
-	    to: "alexander@alemayhu.com,bpf@iogearbox.net",
-	    subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
-	    body: "Details at ${env.BUILD_URL}consoleFull",
-	    )
+        sendNotification("Build failure: ", "alexander@alemayhu.com,bpf@iogearbox.net")
       }
       success {
-	mail to: "alexander@alemayhu.com,bpf@iogearbox.net",
-	     subject: "Completed Pipeline: ${currentBuild.fullDisplayName}",
-	     body: "Details at ${env.BUILD_URL}"
+        sendNotification("Build success: ", "alexander@alemayhu.com,bpf@iogearbox.net")
       }
     }
 }
