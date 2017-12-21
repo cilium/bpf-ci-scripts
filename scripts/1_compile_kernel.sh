@@ -50,6 +50,7 @@ make -j `getconf _NPROCESSORS_ONLN` LOCALVERSION=-custom
 sudo make modules_install
 sudo make install
 sudo make headers_install INSTALL_HDR_PATH=/usr/
+make headers_install
 
 # iproute2 installation
 cd $HOME

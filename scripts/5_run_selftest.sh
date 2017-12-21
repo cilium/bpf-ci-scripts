@@ -14,9 +14,6 @@ function run_selftest() {
 KDIR=$1 # Kernel tree
 TEST_DIR=$KDIR/tools/testing/selftests/bpf/
 
-cd $KDIR
-make headers_install
-
 set +e
 (cd $KDIR/tools/bpf/bpftool/ && make && sudo make install) || true
 if ! test -d $TEST_DIR; then
