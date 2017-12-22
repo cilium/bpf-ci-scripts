@@ -23,7 +23,7 @@ on.
 
 - [Pipeline: Multibranch with defaults](https://plugins.jenkins.io/pipeline-multibranch-defaults)
 - [Email-ext plugin](https://wiki.jenkins.io/display/JENKINS/Email-ext+plugin)
-
+- [Pipeline](https://plugins.jenkins.io/workflow-aggregator)
 
 ## Vagrant plugins
 
