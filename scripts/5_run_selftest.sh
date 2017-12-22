@@ -17,17 +17,17 @@ TEST_DIR=$KDIR/tools/testing/selftests/bpf/
 cd $TEST_DIR
 
 # Used the default version (3.8.1)
-# run_selftest
+run_selftest
 
-#BACKUP_PATH="$PATH"
-## Used the preinstalled ones from VM image
-#CLANG_VERSIONS=("5.0.0" "4.0.0" "3.9.1" "3.9.0" "4.0.1")
-#for c in ${CLANG_VERSIONS[@]}; do
-#  export PATH="/usr/local/clang+llvm-$c/bin:$PATH"
-#  run_selftest
-#done
-## Restore path
-#export PATH="$BACKUP_PATH"
+BACKUP_PATH="$PATH"
+# Used the preinstalled ones from VM image
+CLANG_VERSIONS=("5.0.0" "4.0.0" "3.9.1" "3.9.0" "4.0.1")
+for c in ${CLANG_VERSIONS[@]}; do
+  export PATH="/usr/local/clang+llvm-$c/bin:$PATH"
+  run_selftest
+done
+# Restore path
+export PATH="$BACKUP_PATH"
 
 # Used development snapsnot
 rm /usr/local/clang/bin/llc
