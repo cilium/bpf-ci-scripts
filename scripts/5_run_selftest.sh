@@ -6,7 +6,6 @@ function run_selftest() {
   clang --version
   llc --version
   make
-  sudo ./test_verifier
   sudo make run_tests
   make clean
 }
