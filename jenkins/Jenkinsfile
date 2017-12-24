@@ -53,6 +53,8 @@ pipeline {
       stage ('BPF selftest') {
         steps {
             sh 'vagrant ssh -c "workspace/workspace/scripts/5_run_selftest.sh ~/workspace"'
+              sh 'vagrant scp :/tmp/tap.log tap.log || true'
+            step([$class: "TapPublisher", testResults: "tap.log"])
         }
       }
     }

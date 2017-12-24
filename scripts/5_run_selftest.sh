@@ -6,6 +6,7 @@ function run_selftest() {
   clang --version
   llc --version
   make
+  sudo ./test_verifier > /tmp/tap.log
   sudo make run_tests
   make clean
 }
