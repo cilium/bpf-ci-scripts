@@ -3,11 +3,11 @@
 set -xe
 
 function run_selftest() {
-  clang --version
-  llc --version
+  local RESULT_FILE=/tmp/selftest-`clang --version|head -n1|awk '{ print $1"-"$3}'|tr -d '\n'`_result.txt
+  clang --version > $RESULT_FILE
+  llc --version > $RESULT_FILE
   make
-  sudo ./test_verifier > /tmp/tap.log
-  sudo make run_tests
+  sudo make run_tests > $RESULT_FILE
   make clean
 }
 
