@@ -1,8 +1,6 @@
 #!groovy
 
 def sendNotification(prefix, recipientList) {
-  String test_results = new File("result.txt").text
-
   emailext (
       to: "${recipientList}",
       subject: "${prefix}${currentBuild.fullDisplayName}",
@@ -10,8 +8,7 @@ def sendNotification(prefix, recipientList) {
       "On tree ${env.GIT_URL}\n"+
       "On branch ${env.GIT_BRANCH}\n"+
       "Using commit ${env.GIT_COMMIT}\n"+
-      "Using builder ${env.NODE_NAME}\n"+
-      "\n\n${test_results}",
+      "Using builder ${env.NODE_NAME}\n",
       )
 }
 
@@ -56,8 +53,6 @@ pipeline {
       stage ('BPF selftest') {
         steps {
             sh 'vagrant ssh -c "workspace/workspace/scripts/5_run_selftest.sh ~/workspace"'
-            sh 'vagrant scp :/tmp/*_result.txt . || true'
-            sh 'cat *_result.txt > result.txt'
             //step([$class: "TapPublisher", testResults: "*_result.txt"])
         }
       }
