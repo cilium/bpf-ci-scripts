@@ -2,9 +2,8 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  # TODO: use box=cilium/ubuntu-16.10 when > v2.6.1 has been released
-  config.vm.box = "scanf/bpf-base"
-  config.vm.box_version = "4"
+  config.vm.box = "cilium/ubuntu-16.10"
+  config.vm.box_version = "2.7"
   config.vm.provider "virtualbox" do |v|
     v.memory = ENV['VM_MEMORY'].to_i
     v.cpus = ENV['VM_CPUS'].to_i
