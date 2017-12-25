@@ -1,14 +1,7 @@
 #!groovy
 
 def sendNotification(prefix, recipientList) {
-  String test_results = ""
-
-    new AntBuilder().fileScanner {
-      fileset(dir: '.',includes: '*_result.txt')
-    }.each {
-      File f ->
-        test_results += f.text
-    }
+  String test_results = new File("result.txt").text
 
   emailext (
       to: "${recipientList}",
@@ -64,6 +57,7 @@ pipeline {
         steps {
             sh 'vagrant ssh -c "workspace/workspace/scripts/5_run_selftest.sh ~/workspace"'
             sh 'vagrant scp :/tmp/*_result.txt . || true'
+            sh 'cat *_result.txt > result.txt'
             //step([$class: "TapPublisher", testResults: "*_result.txt"])
         }
       }
