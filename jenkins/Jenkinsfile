@@ -32,7 +32,7 @@ pipeline {
             sh 'git clone https://github.com/cilium/bpf-ci-scripts workspace || true'
             sh 'git -C workspace checkout . || true'
             sh 'git -C workspace pull origin master || true'
-            sh 'cp workspace/Vagrantfile Vagrantfile'
+            sh 'cp workspace/`uname -m`/Vagrantfile Vagrantfile'
             sh 'vagrant plugin install vagrant-reload'
             sh 'vagrant plugin install vagrant-scp'
             sh 'vagrant up'
