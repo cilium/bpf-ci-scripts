@@ -1,14 +1,18 @@
 #!groovy
 
 def sendNotification(prefix, recipientList) {
+  def commit = [sh(script: "git log --max-count=1 --pretty=oneline --abbrev-commit", returnStdout: true).trim()]
+  def show = sh(script: "git show -1", returnStdout: true).trim()
+
   emailext (
       to: "${recipientList}",
-      subject: "${prefix}${currentBuild.fullDisplayName}",
+      subject: "${prefix}${currentBuild.fullDisplayName} - ${commit}",
       body: "Wall of text at ${env.BUILD_URL}consoleFull\n\n"+
       "On tree ${env.GIT_URL}\n"+
       "On branch ${env.GIT_BRANCH}\n"+
       "Using commit ${env.GIT_COMMIT}\n"+
-      "Using builder ${env.NODE_NAME}\n",
+      "Using builder ${env.NODE_NAME}\n\n"+
+      "${show}\n",
       )
 }
 
