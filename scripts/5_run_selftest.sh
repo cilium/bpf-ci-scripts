@@ -4,10 +4,10 @@ set -xe
 
 function run_selftest() {
   local RESULT_FILE=/tmp/selftest-`clang --version|head -n1|awk '{ print $1"-"$3}'|tr -d '\n'`_result.txt
-  clang --version > $RESULT_FILE
-  llc --version > $RESULT_FILE
+  clang --version >> $RESULT_FILE
+  llc --version >> $RESULT_FILE
   make
-  sudo make run_tests > $RESULT_FILE
+  sudo make run_tests >> $RESULT_FILE
   make clean
 }
 

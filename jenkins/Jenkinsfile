@@ -3,7 +3,7 @@
 def sendNotification(prefix, recipientList) {
   def commit = [sh(script: "git log --max-count=1 --pretty=oneline --abbrev-commit", returnStdout: true).trim()]
   def show = sh(script: "git show -1", returnStdout: true).trim()
-  def results = sh(script: "cat results.txt", returnStdout: true).trim()
+  def results = sh(script: "cat ARTIFACTS/*_result.txt", returnStdout: true).trim()
 
   emailext (
       to: "${recipientList}",
