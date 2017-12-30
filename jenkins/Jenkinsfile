@@ -3,6 +3,7 @@
 def sendNotification(prefix, recipientList) {
   def commit = [sh(script: "git log --max-count=1 --pretty=oneline --abbrev-commit", returnStdout: true).trim()]
   def show = sh(script: "git show -1", returnStdout: true).trim()
+  def results = sh(script: "cat results.txt", returnStdout: true).trim()
 
   emailext (
       to: "${recipientList}",
@@ -12,6 +13,7 @@ def sendNotification(prefix, recipientList) {
       "On branch ${env.GIT_BRANCH}\n"+
       "Using commit ${env.GIT_COMMIT}\n"+
       "Using builder ${env.NODE_NAME}\n\n"+
+      "${results}\n\n"+
       "${show}\n",
       )
 }
