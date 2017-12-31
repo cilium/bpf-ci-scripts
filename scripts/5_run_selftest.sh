@@ -35,8 +35,8 @@ cd $TEST_DIR
 #export PATH="$BACKUP_PATH"
 
 # Used development snapsnot
-rm /usr/local/clang/bin/llc
-rm /usr/local/clang/bin/clang
+sudo rm /usr/local/clang/bin/llc /usr/bin/llc
+sudo rm /usr/local/clang/bin/clang /usr/bin/clang
 ln -s /usr/bin/llc-6.0 /usr/local/clang/bin/llc
 ln -s /usr/bin/clang-6.0 /usr/local/clang/bin/clang
 run_selftest
