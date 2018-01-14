@@ -8,3 +8,4 @@ vagrant scp :workspace/tools/testing/selftests/bpf/ ARTIFACTS/selftest-bpf || tr
 vagrant scp :workspace/.config ARTIFACTS/KernelConfig.txt || true
 vagrant scp :/tmp/*_result.txt ARTIFACTS/ || true
 touch ARTIFACTS/empty_result.txt
+df -h /
