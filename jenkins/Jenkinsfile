@@ -70,10 +70,10 @@ pipeline {
 	archiveArtifacts artifacts: 'ARTIFACTS/**', fingerprint: true, allowEmptyArchive: true
       }
       failure {
-        sendNotification("Build failure: ", "alexander@alemayhu.com,daniel@iogearbox.net")
+        sendNotification("Build failure: ", "daniel@iogearbox.net")
       }
       success {
-        sendNotification("Build success: ", "alexander@alemayhu.com,daniel@iogearbox.net")
+        sendNotification("Build success: ", "daniel@iogearbox.net")
       }
     }
 }
